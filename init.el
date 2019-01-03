@@ -26,6 +26,10 @@
 		counsel
 		smartparens
 		;; --- Major Mode ---
+		ein
+		flycheck
+		py-autopep8
+		elpy
 		js2-mode
 		markdown-mode+
 		;; --- Minor Mode ---
@@ -246,6 +250,18 @@
 ;;python                                                                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+(elpy-enable)
+
+;;C-c C-c
+(elpy-use-ipython)
+
+(when (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
