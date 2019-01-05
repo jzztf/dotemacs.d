@@ -69,6 +69,7 @@
 
 ;; smartparens
 (require 'smartparens-config)
+(smartparens-strict-mode t)
 
 ;; better default
 ;;----------------------------------------------------------------------------
