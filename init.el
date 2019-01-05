@@ -1,9 +1,5 @@
-;;emacs starts with server mode
-;;(server-start)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; packages                                                                   ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; packages
+;;----------------------------------------------------------------------------
 
 ;; set packages source
 (when (>= emacs-major-version 24)
@@ -26,15 +22,10 @@
 		counsel
 		smartparens
 		;; --- Major Mode ---
-		ein
 		flycheck
 		py-autopep8
 		elpy
-		js2-mode
 		markdown-mode+
-		;; --- Minor Mode ---
-		nodejs-repl
-		exec-path-from-shell
 		;; --- Themes ---
 		monokai-theme
 		powerline
@@ -76,9 +67,11 @@
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; better default                                                             ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; smartparens
+(require 'smartparens-config)
+
+;; better default
+;;----------------------------------------------------------------------------
 
 ;; global line number
 (global-linum-mode t)
@@ -129,9 +122,8 @@
 ;;[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Auto-Major-Mode.html]]
 (setq auto-mode-alist
       (append
-       '(("\\.js\\'" . js2-mode)
-	 ("\\.org\\'" . org-mode)
-	 ("\\.md\\'" . markdown-mode))
+       '(("\\.org\\'" . org-mode)
+	 ("\\.md\\'" . markdown-mode+))
        auto-mode-alist))
 
 ;; hungry-delete
@@ -152,9 +144,10 @@
 ;; smartparens
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;functions                                                                   ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;functions
+;;----------------------------------------------------------------------------
+
 ;; indent
 (defun indent-buffer()
   (interactive)
@@ -176,9 +169,9 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;keybingding                                                                 ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;keybingding
+;;----------------------------------------------------------------------------
+
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 (global-set-key (kbd "s-/") 'hippie-expand)
 (global-set-key (kbd "<f2>") 'open-init-file)
@@ -201,9 +194,8 @@
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;ui                                                                          ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;ui
+;;----------------------------------------------------------------------------
 
 ;;take off menu bar
 (menu-bar-mode -1)
@@ -212,7 +204,7 @@
 (tool-bar-mode -1)
 
 ;; take off scroll bar
-(scroll-bar-mode -1)
+;;(scroll-bar-mode -1)
 
 ;; set the font size
 ;; http://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
@@ -232,29 +224,21 @@
 
 ;; load-theme
 (load-theme 'monokai t)
-;; add-to-list
-;; (add-to-list 'jzztf/packages 'monokai-theme)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;org                                                                         ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;org
+;;----------------------------------------------------------------------------
 
 ;; hightlight in org source block
 (require 'org)
 (setq org-src-fontify-natively t)
 
 ;; set default agenda file directory
-(setq org-agenda-files '("~/org"))
+;;(setq org-agenda-files '("~/org"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;python                                                                      ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;;python
+;;----------------------------------------------------------------------------
 
 (elpy-enable)
-
-;;C-c C-c
-(elpy-use-ipython)
 
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
