@@ -27,6 +27,7 @@
 		elpy
 		markdown-mode+
 		;; --- Themes ---
+		dracula-theme
 		monokai-theme
 		powerline
 		;; solarized-theme
@@ -224,7 +225,8 @@
 (powerline-default-theme)
 
 ;; load-theme
-(load-theme 'monokai t)
+;;(load-theme 'monokai t)
+(load-theme 'dracula t)
 
 ;;org
 ;;----------------------------------------------------------------------------
@@ -255,7 +257,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    ())))
+    (smartparens smart-mode-line-powerline-theme py-autopep8 popwin nodejs-repl monokai-theme markdown-mode+ hungry-delete flycheck exec-path-from-shell elpy ein counsel))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
