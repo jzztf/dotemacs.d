@@ -22,13 +22,14 @@
 		counsel
 		smartparens
 		;; --- Major Mode ---
+		magit
 		flycheck
 		py-autopep8
 		elpy
 		markdown-mode+
 		;; --- Themes ---
 		dracula-theme
-		monokai-theme
+		;;monokai-theme
 		powerline
 		;; solarized-theme
 		) "Default packages")
@@ -71,6 +72,8 @@
 ;; smartparens
 (require 'smartparens-config)
 (smartparens-strict-mode t)
+
+(setq magit-view-git-manual-method 'man)
 
 ;; better default
 ;;----------------------------------------------------------------------------
@@ -196,6 +199,10 @@
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
 
+;;magit
+(global-set-key (kbd "C-x g") 'magit-status)
+
+
 ;;ui
 ;;----------------------------------------------------------------------------
 
@@ -257,7 +264,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (smartparens smart-mode-line-powerline-theme py-autopep8 popwin nodejs-repl monokai-theme markdown-mode+ hungry-delete flycheck exec-path-from-shell elpy ein counsel))))
+    (magit smartparens smart-mode-line-powerline-theme py-autopep8 popwin nodejs-repl monokai-theme markdown-mode+ hungry-delete flycheck exec-path-from-shell elpy ein counsel))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
