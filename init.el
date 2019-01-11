@@ -82,7 +82,7 @@
 ;;----------------------------------------------------------------------------
 
 ;;set default directory
-(setq default-directory "~/lu2win")
+q(setq default-directory "~/lu2win")
 
 ;;automatic new line
 (setq-default auto-fill-function 'do-auto-fill)
@@ -220,6 +220,10 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;;pomidor
+;; enter -> start
+;; space -> break
+;; Q -> quit
+;; R -> reset
 (global-set-key (kbd "<f12>") #'pomidor)
 
 ;;org-pomodro
