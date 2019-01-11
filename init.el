@@ -21,12 +21,15 @@
 		swiper
 		counsel
 		smartparens
+		pomidor
+		org-pomodoro
 		;; --- Major Mode ---
 		magit
 		flycheck
 		py-autopep8
 		elpy
-		markdown-mode+
+		markdown-mode
+		
 		;; --- Themes ---
 		dracula-theme
 		;;monokai-theme
@@ -78,6 +81,18 @@
 ;; better default
 ;;----------------------------------------------------------------------------
 
+;;set default directory
+(setq default-directory "~/lu2win")
+
+;;automatic new line
+(setq-default auto-fill-function 'do-auto-fill)
+(setq fill-column 80)
+
+;;show time in modeline
+(display-time-mode 1)
+(setq display-time-format "%H:%M")
+
+
 ;; global line number
 (global-linum-mode t)
 
@@ -128,7 +143,7 @@
 (setq auto-mode-alist
       (append
        '(("\\.org\\'" . org-mode)
-	 ("\\.md\\'" . markdown-mode+))
+	 ("\\.md\\'" . markdown-mode))
        auto-mode-alist))
 
 ;; hungry-delete
@@ -149,6 +164,8 @@
 ;; smartparens
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 
+;;pomidor
+(setq alert-default-style 'libnotify)
 
 ;;functions
 ;;----------------------------------------------------------------------------
@@ -202,6 +219,12 @@
 ;;magit
 (global-set-key (kbd "C-x g") 'magit-status)
 
+;;pomidor
+(global-set-key (kbd "<f12>") #'pomidor)
+
+;;org-pomodro
+(global-set-key (kbd "C-c C-p") 'org-pomodoro)
+
 
 ;;ui
 ;;----------------------------------------------------------------------------
@@ -243,7 +266,7 @@
 (setq org-src-fontify-natively t)
 
 ;; set default agenda file directory
-;;(setq org-agenda-files '("~/org"))
+(setq org-agenda-files '("~/org"))
 
 ;;python
 ;;----------------------------------------------------------------------------
@@ -264,7 +287,8 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit smartparens smart-mode-line-powerline-theme py-autopep8 popwin nodejs-repl monokai-theme markdown-mode+ hungry-delete flycheck exec-path-from-shell elpy ein counsel))))
+    (org-pomodoro pomodoro org-clock-today pomidor magit smartparens smart-mode-line-powerline-theme py-autopep8 popwin nodejs-repl monokai-theme markdown-mode+ hungry-delete flycheck exec-path-from-shell elpy ein counsel)))
+ '(timeclock-mode-line-display t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
