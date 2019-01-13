@@ -82,7 +82,7 @@
 ;;----------------------------------------------------------------------------
 
 ;;set default directory
-q(setq default-directory "~/lu2win")
+(setq default-directory "~/lu2win")
 
 ;;automatic new line
 (setq-default auto-fill-function 'do-auto-fill)
