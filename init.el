@@ -81,6 +81,10 @@
 ;; better default
 ;;----------------------------------------------------------------------------
 
+;;set copy text to clipboard of system
+(setq x-select-enable-clipboard t)
+
+
 ;;set default directory
 (setq default-directory "~/")
 
@@ -264,13 +268,28 @@
 
 ;; 解决在org-mode下，编辑中文tables时无法对齐
 ;; Setting English Font
-(set-face-attribute
-'default nil :font "Consolas 11")
+;;(set-face-attribute
+;;'default nil :font "Consolas 11")
 ;; Chinese Font
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
-(set-fontset-font (frame-parameter nil 'font)
-charset
-(font-spec :family "Microsoft Yahei" :size 16)))
+;;(dolist (charset '(kana han symbol cjk-misc bopomofo))
+;;  (set-fontset-font (frame-parameter nil 'font) charset
+;;		    (font-spec :family "Microsoft Yahei" :size 16)))
+
+(setq fonts
+      (cond ((eq system-type 'darwin)     '("Monaco"    "STHeiti"))
+	    ((eq system-type 'gnu/linux)  '("DejaVu Sans Mono" "WenQuanYi Zen Hei"))
+	    ((eq system-type 'windows-nt) '("Consolas" "Microsoft Yahei"))))
+
+(set-face-attribute 'default nil :font
+		    (format "%s:pixelsize=%d" (car fonts) 14))
+
+(when (display-graphic-p)
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font)
+		      charset
+		            (font-spec :family (car (cdr fonts))))))
+
+
 
 ;;org
 ;;----------------------------------------------------------------------------
